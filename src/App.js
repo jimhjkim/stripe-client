@@ -1,24 +1,86 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import {
+  BrowswerRouter as Router,
+  Switch,
+  Route,
+  Link,
+} from "react-router-dom";
+
+import { Checkout, CheckoutSuccess, CheckoutFail } from "./Checkout";
+import Payments from "./Payments";
+import Customers from "./Customers";
+import Subscriptions from "./Subscriptions";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div>
+        <nav>
+          <ul className="navbar-nav">
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/checkout">
+                <span aria-label="emoji" role="img">
+                  🛒
+                </span>{" "}
+                Checkout
+              </Link>
+            </li>
+            <li>
+              <Link to="/customers">
+                <span aria-label="emoji" role="img">
+                  🧑🏿‍🤝‍🧑🏻
+                </span>{" "}
+              </Link>
+            </li>
+            <li>
+              <Link to="/subscriptions">
+                <span aria-label="emoji" role="img">
+                  🔄
+                </span>{" "}
+                Subscriptions
+              </Link>
+            </li>
+          </ul>
+        </nav>
+
+        <main>
+          <Switch>
+            <Route path="/checkout">
+              <Checkout />
+            </Route>
+            <Route path="/payments">
+              <Payments />
+            </Route>
+            <Route path="/customers">
+              <Customers />
+            </Route>
+            <Route path="/subscriptions">
+              <Subscriptions />
+            </Route>
+            <Route path="/success">
+              <CheckoutSuccess />
+            </Route>
+            <Route path="/failed">
+              <CheckoutFail />
+            </Route>
+            <Route path="/">
+              <Home />
+            </Route>
+          </Switch>
+        </main>
+      </div>
+    </Router>
+  );
+}
+
+function Home() {
+  return (
+    <>
+      <h2>Stripe React + Node.js</h2>
+    </>
   );
 }
 
