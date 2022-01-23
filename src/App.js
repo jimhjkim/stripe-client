@@ -1,10 +1,5 @@
 import "./App.css";
-import {
-  BrowswerRouter as Router,
-  Switch,
-  Route,
-  Link,
-} from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
 import { Checkout, CheckoutSuccess, CheckoutFail } from "./Checkout";
 import Payments from "./Payments";
@@ -47,7 +42,7 @@ function App() {
         </nav>
 
         <main>
-          <Switch>
+          <Routes>
             <Route path="/checkout">
               <Checkout />
             </Route>
@@ -69,7 +64,7 @@ function App() {
             <Route path="/">
               <Home />
             </Route>
-          </Switch>
+          </Routes>
         </main>
       </div>
     </Router>
